@@ -1,0 +1,220 @@
+---
+title: RAG Fundamentals
+description: Learn how Retrieval-Augmented Generation works.
+category: Generative AI
+difficulty: Beginner
+---
+
+# RAG Fundamentals
+
+## 1. What is RAG?
+
+Retrieval-Augmented Generation (RAG) is an architecture that combines information retrieval with Large Language Models (LLMs).
+
+A RAG application retrieves relevant information from an external knowledge base and provides that information to an LLM to generate an answer.
+
+RAG is useful when an application needs to answer questions about private documents, company policies, technical manuals, or frequently updated information.
+
+### Why do we need RAG?
+
+LLMs have several limitations:
+
+- Their training knowledge may not include recent information.
+- They may not know the contents of private company documents.
+- They can generate incorrect information when evidence is missing.
+- Updating a model's knowledge through training can be expensive.
+
+RAG addresses these problems by retrieving relevant external information at query time.
+
+## 2. RAG Architecture
+
+A typical RAG application has two major workflows.
+
+### Ingestion Workflow
+
+1. Load documents from sources such as TXT, PDF, DOCX, and MDX files.
+2. Extract the document text.
+3. Split the text into chunks.
+4. Generate embeddings for each chunk.
+5. Store the chunks and embeddings in a vector database.
+
+### Query Workflow
+
+1. Receive a question from the user.
+2. Convert the question into an embedding.
+3. Search the vector database for relevant chunks.
+4. Construct a prompt using the retrieved context.
+5. Send the prompt to the LLM.
+6. Return the answer and its source references.
+
+## 3. Document Chunking
+
+Chunking divides a large document into smaller text segments.
+
+For example, a document containing 5,000 words could be split into smaller chunks containing approximately 300–500 words each.
+
+The ideal chunk size depends on the document structure, embedding model, retrieval strategy, and context window.
+
+### Chunk Overlap
+
+Chunk overlap preserves some text between adjacent chunks.
+
+For example:
+
+- Chunk 1: words 1–400
+- Chunk 2: words 350–750
+- Chunk 3: words 700–1,100
+
+The overlapping regions can help preserve context when a sentence or concept crosses a chunk boundary.
+
+However, excessive overlap can increase storage costs and produce redundant retrieval results.
+
+## 4. Embeddings
+
+An embedding is a numerical vector representation of text.
+
+Embedding models map text into a vector space where semantic relationships can be represented by distances or similarities.
+
+For example, these questions express similar intentions:
+
+- How can I reset my password?
+- What should I do if I forget my password?
+
+A suitable embedding model may place these sentences near each other in the vector space.
+
+Popular embedding options include:
+
+- `nomic-embed-text`
+- `bge-small-en`
+- `text-embedding-3-small`
+
+The available models, dimensions, and supported languages differ.
+
+## 5. Vector Databases
+
+A vector database stores embeddings and supports similarity-based retrieval.
+
+Examples include:
+
+- Chroma
+- Qdrant
+- Weaviate
+- PostgreSQL with pgvector
+- FAISS
+
+A stored chunk should ideally retain its original text and metadata.
+
+Example metadata:
+
+- `source`: `company_handbook.pdf`
+- `page`: `4`
+- `section`: `Security Policy`
+- `chunk_id`: `security-policy-004`
+
+Metadata makes source attribution, filtering, and debugging easier.
+
+## 6. Retrieval Strategies
+
+### Dense Retrieval
+
+Dense retrieval uses embeddings to find semantically similar text.
+
+It can retrieve relevant information even when the question and document use different wording.
+
+### Keyword Retrieval
+
+Keyword retrieval searches for matching terms using techniques such as BM25.
+
+It can be effective for exact product names, identifiers, and technical terminology.
+
+### Hybrid Retrieval
+
+Hybrid retrieval combines dense retrieval and keyword search.
+
+It can improve coverage when semantic similarity alone does not retrieve exact identifiers or specialized terms.
+
+### Reranking
+
+A reranker evaluates the relevance of candidate chunks and reorders them.
+
+A common pipeline retrieves a larger candidate set first and then selects the strongest passages for the final prompt.
+
+## 7. Context Construction
+
+Retrieved chunks are inserted into a prompt alongside the user's question.
+
+A basic prompt could be:
+
+You are a helpful assistant. Answer using only the context below.
+
+If the context does not contain enough evidence, say that the answer is not available in the provided documents.
+
+Context:
+{retrieved_context}
+
+Question:
+{user_question}
+
+Provide a concise answer and identify the source documents used.
+
+## 8. Common RAG Failure Modes
+
+### Missing Information
+
+The answer is absent from the indexed documents.
+
+Expected behavior: Explain that the available documents do not contain the answer.
+
+### Poor Retrieval
+
+The correct chunk exists but is not retrieved.
+
+Potential solutions include improving chunking, embeddings, metadata filters, or search strategies.
+
+### Incorrect Generation
+
+The correct context is retrieved, but the LLM produces an unsupported answer.
+
+Potential solutions include stronger grounding instructions, clearer context formatting, and evaluation.
+
+### Stale Index
+
+The source document changes, but the vector database still contains the old version.
+
+Potential solutions include document version tracking, deletion of stale chunks, and reindexing.
+
+## 9. Evaluating RAG
+
+RAG quality should be evaluated at both the retrieval and generation stages.
+
+Retrieval metrics include:
+
+- **Recall@K:** Whether relevant chunks appear in the top K retrieved results.
+- **Precision@K:** How many of the top K retrieved chunks are relevant.
+- **MRR:** How highly the first relevant result ranks.
+
+Generation evaluation can include:
+
+- **Faithfulness:** Whether the answer is supported by the retrieved context.
+- **Answer relevance:** Whether the answer addresses the question.
+- **Correctness:** Whether the answer agrees with a trusted reference answer.
+- **Citation accuracy:** Whether cited sources support the claims made.
+
+A good evaluation dataset should include questions that are answerable from the documents and questions whose answers are absent.
+
+## 10. Practice Questions
+
+1. What problem does RAG solve?
+2. What is the difference between document ingestion and query processing?
+3. Why is chunk overlap useful?
+4. How do embeddings support semantic search?
+5. When might hybrid retrieval outperform dense retrieval alone?
+6. What is the purpose of reranking?
+7. What should an application do when retrieved context does not contain the answer?
+8. What is the difference between Recall@K and Precision@K?
+9. How can an application detect stale indexed documents?
+10. Why should a RAG system return source references?
+
+## Summary
+
+RAG combines external

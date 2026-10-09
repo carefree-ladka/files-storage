@@ -1,0 +1,100 @@
+# RAG Fundamentals
+
+## What is RAG?
+
+Retrieval-Augmented Generation (RAG) is a technique that enables a Large Language Model (LLM) to answer questions using external documents.
+
+Instead of relying only on knowledge learned during training, a RAG system retrieves relevant information from a knowledge base and provides it to the LLM as context.
+
+## How Does RAG Work?
+
+A typical RAG pipeline consists of the following steps:
+
+1. Document ingestion
+2. Text extraction
+3. Text chunking
+4. Embedding generation
+5. Vector database storage
+6. Similarity search
+7. Context construction
+8. LLM response generation
+
+## Document Ingestion
+
+Document ingestion is the process of loading files into the RAG system.
+
+Supported document formats may include TXT, PDF, DOCX, MDX, Markdown, and JSON.
+
+The system extracts text from each document before processing it further.
+
+## Text Chunking
+
+Chunking divides large documents into smaller pieces called chunks.
+
+For example, a document containing 2,000 words might be divided into chunks of 300 words each.
+
+Chunking helps the retrieval system identify specific information without processing the entire document for every question.
+
+Some chunking strategies use overlapping text between consecutive chunks to preserve context.
+
+## Embeddings
+
+Embeddings are numerical representations of text.
+
+An embedding model converts a sentence or paragraph into a vector containing numerical values.
+
+Texts with similar meanings often have vectors that are close together in the embedding space.
+
+For example, these questions have similar meanings:
+
+- How do I reset my password?
+- What is the process for changing my password?
+
+A semantic retrieval system may identify similar documents for both questions.
+
+## Vector Databases
+
+A vector database stores embeddings and supports similarity searches.
+
+Examples include Chroma, FAISS, Qdrant, Weaviate, and PostgreSQL with pgvector.
+
+A stored record commonly includes the embedding, chunk text, source filename, and metadata.
+
+## Retrieval
+
+When a user asks a question, the system converts the question into an embedding.
+
+It searches the vector database and retrieves the most relevant chunks.
+
+The number of retrieved chunks is often controlled by a parameter called top_k.
+
+For example, top_k = 3 means the system attempts to retrieve three relevant chunks.
+
+## Generation
+
+The retrieved chunks are added to a prompt sent to the language model.
+
+The prompt instructs the model to answer using the supplied context.
+
+If the documents do not contain enough information, the model should clearly state that the answer is unavailable.
+
+## Common RAG Problems
+
+1. Incorrect chunk sizes can reduce retrieval quality.
+2. Poor embeddings can cause relevant passages to be missed.
+3. Irrelevant chunks can lead to incorrect answers.
+4. Missing metadata can make source tracking difficult.
+5. The LLM may generate unsupported information.
+6. Duplicate documents can introduce redundant context.
+
+## Example
+
+Question: What is the purpose of chunking?
+
+Context: Chunking divides large documents into smaller pieces so that a retrieval system can identify relevant information efficiently.
+
+Expected answer: Chunking helps a RAG system retrieve focused passages from large documents instead of processing an entire document for every question.
+
+## Key Takeaway
+
+A RAG system combines information retrieval with language generation. Its answer quality depends on document quality, chunking, embeddings, retrieval, prompt design, and evaluation.

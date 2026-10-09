@@ -1,0 +1,69 @@
+# NovaDesk Product FAQ
+
+## Product Overview
+
+NovaDesk is a fictional customer support platform designed for small and medium-sized businesses.
+
+It allows support teams to create tickets, assign owners, track priorities, and generate reports.
+
+## Ticket Management
+
+Every ticket has a unique ticket ID.
+
+Each ticket has one primary owner.
+
+Additional team members can follow a ticket to receive updates.
+
+New tickets have Normal priority by default unless an automation rule specifies a different priority.
+
+## Ticket Retention
+
+Deleted tickets are soft-deleted initially.
+
+Soft-deleted tickets remain recoverable for 30 days.
+
+After 30 days, the cleanup process permanently removes them.
+
+## Reporting
+
+Workspace administrators can export ticket reports as CSV files.
+
+Standard users can view reports but cannot export them.
+
+Reports can include ticket IDs, categories, priorities, owners, statuses, and creation dates.
+
+## Notifications
+
+Urgent tickets trigger in-app notifications for the on-call group.
+
+Email notifications depend on the notification settings configured for the workspace.
+
+If notifications are not received, administrators should first verify the workspace notification settings.
+
+## Internet Connectivity
+
+NovaDesk requires an internet connection to create, update, and synchronize tickets.
+
+Offline ticket creation is not supported.
+
+## Frequently Asked Questions
+
+Q: Can a ticket have multiple primary owners?
+
+A: No. Every ticket has exactly one primary owner.
+
+Q: Can standard users export CSV reports?
+
+A: No. Only workspace administrators can export reports.
+
+Q: How long are deleted tickets retained?
+
+A: For 30 days before permanent deletion.
+
+Q: Does NovaDesk support offline mode?
+
+A: No. An internet connection is required.
+
+Q: What is the default ticket priority?
+
+A: Normal priority, unless an automation rule overrides it.

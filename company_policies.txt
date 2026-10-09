@@ -1,0 +1,78 @@
+# Company Policies
+
+Company Name: Nova Technologies
+Document Type: Internal Policy Handbook
+
+## Working Hours
+
+Employees work from Monday to Friday.
+
+Standard working hours are 9:30 AM to 6:30 PM.
+
+Employees should inform their managers if they expect to arrive more than 30 minutes late.
+
+## Leave Policy
+
+Employees should submit planned leave requests at least five working days in advance.
+
+Emergency leave should be communicated to the reporting manager as soon as possible.
+
+Leave approval depends on team availability and the employee's remaining leave balance.
+
+## Remote Work Policy
+
+Employees may work remotely up to three days per week with manager approval.
+
+Employees working remotely must remain available during agreed team collaboration hours.
+
+## Expense Reimbursement
+
+Expenses below INR 2,000 require a valid receipt.
+
+Expenses of INR 2,000 or more require manager approval before purchase.
+
+Travel expenses must include the travel date, destination, business purpose, and supporting receipts.
+
+## Security Policy
+
+Employees must never share passwords with other people.
+
+Multi-factor authentication should be enabled wherever available.
+
+Suspected security incidents must be reported to the security team within one hour of discovery.
+
+Credentials and API keys must not be committed to public GitHub repositories.
+
+## Equipment Reimbursement
+
+Employees may claim up to INR 1,500 per year for approved ergonomic accessories.
+
+Claims require a valid receipt and a short business justification.
+
+## Support Requests
+
+Internal support requests should include:
+
+- The affected service
+- The approximate time of the problem
+- Steps to reproduce the issue
+- The business impact
+- Relevant error messages
+
+## Frequently Asked Questions
+
+Q: How many days per week can an employee work remotely?
+
+A: Up to three days per week with manager approval.
+
+Q: What is the annual ergonomic accessory reimbursement limit?
+
+A: INR 1,500.
+
+Q: When must a suspected security incident be reported?
+
+A: Within one hour of discovery.
+
+Q: How early should planned leave be requested?
+
+A: At least five working days in advance.
